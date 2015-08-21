@@ -34,6 +34,12 @@ var Player = function(x,y){
     this.x = x;
     this.y = y;
     this.sprite = 'images/char-boy.png';
+    // var theBox = function() {
+    //     if (this.x <= 0 || this.x >= 505 || this.y <= 0 || this.y >= 606) {
+    //         this.x = this.x;
+    //         this.y = this.y;
+    //     }
+    // }
 }
 
 
@@ -48,14 +54,29 @@ Player.prototype.render = function(){
 Player.prototype.handleInput = function(allowedKeys){
     
     switch(allowedKeys){
-        case 'left' : if(this.x>0){this.x=this.x-10;}
+        case 'left' : 
+            if(this.x >= 0){
+            this.x = this.x - 20;
+        }
                         break;
-        case 'right': if(this.x<404){this.x=this.x+10;}
+
+        case 'right': 
+            if(this.x <=420){
+            this.x = this.x + 20;
+        }
                         break;
-        case 'up': this.y=this.y-10;
+
+        case 'up':    
+            if(this.y >= 5){
+            this.y = this.y - 20;
+        }
                         break;
-        case 'down': if(this.y<375){this.y=this.y+10;}
+
+        case 'down': if(this.y <= 385){
+            this.y = this.y + 20;
+        }
                         break;
+
             }
 }
 
@@ -67,7 +88,7 @@ var allEnemies = [];
 allEnemies[0] = new Enemy (0, 65);
 allEnemies[1] = new Enemy (0, 150);
 allEnemies[2] = new Enemy (0, 245);
-var player = new Player(202, 305);
+var player = new Player(202, 405);
 
 
 
