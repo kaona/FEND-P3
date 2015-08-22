@@ -5,11 +5,19 @@ var Enemy = function(x, y) {
     this.x = x;
     this.y = y;
     this.loc = (this.x, this.y);
+
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
+    this.w = 101; //sprite width
+    this.h = 171; //sprite heigth
+    this.box = [this.x,this.y, this.w, this.h];
 
-}
+
+};
+
+
+
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
@@ -17,16 +25,16 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    this.x = this.x + 10 * dt;
+    this.x = this.x + 25 * dt;
     if (this.x > 505) {
         this.x = -10;
     }
-}
+};
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+};
 
 // Now write your own player class
 // This class requires an update(), render() and
@@ -36,22 +44,52 @@ var Player = function(x,y){
     this.y = y;
     this.sprite = 'images/char-boy.png';
     this.loc = (this.x, this.y);
-    // var theBox = function() {
-    //     if (this.x <= 0 || this.x >= 505 || this.y <= 0 || this.y >= 606) {
-    //         this.x = this.x;
-    //         this.y = this.y;
-    //     }
-    // }
-}
-
+    this.w = 101; //sprite width
+    this.h = 171; //sprite heigth
+    this.box = [this.x,this.y, this.w, this.h];
+};
 
 Player.prototype.update = function () {
-    this.x = this.x;
-    this.y = this.y;
-}
+        // Run collision detection for player against all enemies
+        for(var i=0; i < allEnemies.length; i++) {
+
+                if (this.box[0] < allEnemies[i].box[0] + allEnemies[i].box[2] &&
+                   this.box[0] + this.box[2] > allEnemies[i].box[0] &&
+                   this.box[1] < allEnemies[i].box[1] + allEnemies[i].box[3] &&
+                   this.box[3] + this.box[1]> allEnemies[i].box[1]) {
+                  // collision detected!
+                    prompt("You Got Chomped By The Bug!");
+                        this.loc = (202, 405);
+                     }
+                      else
+                     {
+                        return false;
+                     }
+        }
+    };
+
+// var collisionCheck = function() {
+// // Run collision detection for player against all enemies
+//         for(var i=0; i < allEnemies.length; i++) {
+
+//                 if (this.box[0] < allEnemies[i].box[0] + allEnemies[i].box[2] &&
+//                    this.box[0] + this.box[2] > allEnemies[i].box[0] &&
+//                    this.box[1] < allEnemies[i].box[1] + allEnemies[i].box[3] &&
+//                    this.box[3] + this.box[1]> allEnemies[i].box[1]) {
+//                   // collision detected!
+//                     prompt("You Got Chomped By The Bug!");
+//                         this.loc = (202, 405);
+//                      }
+//                       else
+//                      {
+//                         return false;
+//                      }
+//         }
+//     };
+
 Player.prototype.render = function(){
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+};
 
 Player.prototype.handleInput = function(allowedKeys){
 
@@ -80,7 +118,7 @@ Player.prototype.handleInput = function(allowedKeys){
         }
         break;
         }
-}
+};
 
 
 // Now instantiate your objects.
@@ -93,13 +131,7 @@ allEnemies[2] = new Enemy (0, 245);
 
 var player = new Player(202, 405);
 
-Enemy.prototype.collision = function (player.loc){
 
-    if (player.loc === allEnemies[i].loc){
-
-        var player = new Player()
-    }
-}
 
 
 
