@@ -4,6 +4,7 @@ var Enemy = function(x, y) {
     // we've provided one for you to get started
     this.x = x;
     this.y = y;
+    this.loc = (this.x, this.y);
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
@@ -34,6 +35,7 @@ var Player = function(x,y){
     this.x = x;
     this.y = y;
     this.sprite = 'images/char-boy.png';
+    this.loc = (this.x, this.y);
     // var theBox = function() {
     //     if (this.x <= 0 || this.x >= 505 || this.y <= 0 || this.y >= 606) {
     //         this.x = this.x;
@@ -90,6 +92,13 @@ allEnemies[1] = new Enemy (0, 150);
 allEnemies[2] = new Enemy (0, 245);
 var player = new Player(202, 405);
 
+Enemy.prototype.collision = function (player.loc){
+
+    if (player.loc === allEnemies[i].loc){
+        
+        var player = new Player()
+    }
+}
 
 
 
