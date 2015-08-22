@@ -56,30 +56,30 @@ Player.prototype.render = function(){
 Player.prototype.handleInput = function(allowedKeys){
 
     switch(allowedKeys){
+
         case 'left' :
             if(this.x >= 0){
             this.x = this.x - 20;
         }
-                        break;
+        break;
 
         case 'right':
             if(this.x <=420){
             this.x = this.x + 20;
         }
-                        break;
+        break;
 
         case 'up':
             if(this.y >= 5){
             this.y = this.y - 20;
         }
-                        break;
+        break;
 
         case 'down': if(this.y <= 385){
             this.y = this.y + 20;
         }
-                        break;
-
-            }
+        break;
+        }
 }
 
 
@@ -90,6 +90,7 @@ var allEnemies = [];
 allEnemies[0] = new Enemy (0, 65);
 allEnemies[1] = new Enemy (0, 150);
 allEnemies[2] = new Enemy (0, 245);
+
 var player = new Player(202, 405);
 
 Enemy.prototype.collision = function (player.loc){
@@ -99,6 +100,7 @@ Enemy.prototype.collision = function (player.loc){
         var player = new Player()
     }
 }
+
 
 
 
