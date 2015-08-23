@@ -47,44 +47,31 @@ var Player = function(x,y){
     this.box = [this.x,this.y, this.w, this.h];
 };
 
-Player.prototype.update = function () {
-    this.box = player.box;
-        // Run collision detection for player against all enemies
+var collisionCheck = function() {
+// Run collision detection for player against all enemies
         for(var i=0; i < allEnemies.length; i++) {
+                if (player.box[0] < allEnemies[i].box[0] + allEnemies[i].box[2] &&
+                   player.box[0] + player.box[2] > allEnemies[i].box[0] &&
+                   player.box[1] < allEnemies[i].box[1] + allEnemies[i].box[3] &&
+                   player.box[3] + player.box[1]> allEnemies[i].box[1]) {
+                    return true;
+               } else {
+                    return false;
+               }
+           }
+       };
 
-                if ((this.box[0] < allEnemies[i].box[0] + allEnemies[i].box[2] &&
-                   this.box[0] + this.box[2] > allEnemies[i].box[0] &&
-                   this.box[1] < allEnemies[i].box[1] + allEnemies[i].box[3] &&
-                   this.box[3] + this.box[1]> allEnemies[i].box[1])=== true) {
-                  // collision detected!
-                    prompt("You Got Chomped By The Bug!");
-                        this.loc = (202, 405);
-                     }
-                      else
-                     {
-                        return false;
-                     }
+Player.prototype.update = function() {
+
+    if (collisionCheck() === true) {
+        var userAnswer = prompt("You died. Do you want to play again? (YES or NO)");
+        if (userAnswer === "YES") {
+            player.loc=(202, 405);
+        } else {
+            prompt("Thanks for playing. See you next time.");
         }
-    };
-
-// var collisionCheck = function() {
-// // Run collision detection for player against all enemies
-//         for(var i=0; i < allEnemies.length; i++) {
-
-//                 if (this.box[0] < allEnemies[i].box[0] + allEnemies[i].box[2] &&
-//                    this.box[0] + this.box[2] > allEnemies[i].box[0] &&
-//                    this.box[1] < allEnemies[i].box[1] + allEnemies[i].box[3] &&
-//                    this.box[3] + this.box[1]> allEnemies[i].box[1]) {
-//                   // collision detected!
-//                     prompt("You Got Chomped By The Bug!");
-//                         this.loc = (202, 405);
-//                      }
-//                       else
-//                      {
-//                         return false;
-//                      }
-//         }
-//     };
+    }
+};
 
 Player.prototype.render = function(){
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
