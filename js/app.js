@@ -12,15 +12,11 @@ var Enemy = function(x, y) {
     this.w = 101; //sprite width
     this.h = 171; //sprite heigth
     this.box = [this.x,this.y, this.w, this.h];
-
-
 };
-
-
-
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
+
 Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
@@ -32,6 +28,7 @@ Enemy.prototype.update = function(dt) {
 };
 
 // Draw the enemy on the screen, required method for game
+
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
@@ -39,6 +36,7 @@ Enemy.prototype.render = function() {
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
+
 var Player = function(x,y){
     this.x = x;
     this.y = y;
@@ -50,13 +48,14 @@ var Player = function(x,y){
 };
 
 Player.prototype.update = function () {
+    this.box = player.box;
         // Run collision detection for player against all enemies
         for(var i=0; i < allEnemies.length; i++) {
 
-                if (this.box[0] < allEnemies[i].box[0] + allEnemies[i].box[2] &&
+                if ((this.box[0] < allEnemies[i].box[0] + allEnemies[i].box[2] &&
                    this.box[0] + this.box[2] > allEnemies[i].box[0] &&
                    this.box[1] < allEnemies[i].box[1] + allEnemies[i].box[3] &&
-                   this.box[3] + this.box[1]> allEnemies[i].box[1]) {
+                   this.box[3] + this.box[1]> allEnemies[i].box[1])=== true) {
                   // collision detected!
                     prompt("You Got Chomped By The Bug!");
                         this.loc = (202, 405);
@@ -124,6 +123,7 @@ Player.prototype.handleInput = function(allowedKeys){
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
+
 var allEnemies = [];
 allEnemies[0] = new Enemy (0, 65);
 allEnemies[1] = new Enemy (0, 150);
@@ -131,13 +131,9 @@ allEnemies[2] = new Enemy (0, 245);
 
 var player = new Player(202, 405);
 
-
-
-
-
-
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
+
 document.addEventListener('keyup', function(e) {
     var allowedKeys = {
         37: 'left',
