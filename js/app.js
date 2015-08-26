@@ -94,11 +94,10 @@ Player.prototype.handleInput = function(allowedKeys){
                                                       // by passing handleInput actions to player.
     switch(allowedKeys){
 
-        case 'left' :
-            if(this.x - this.movement <= this.bound.left){  //this line applies the player bound to its movement.
-            this.x = this.bound.left;
-        } else this.x = this.x - this.movement.left;        //this creates the movement for this case.
-        break;
+        case 'left' : if(this.x - this.movement <= this.bound.left){  //this line applies the player bound to its movement.
+                            this.x = this.bound.left;
+                            } else this.x = this.x - this.movement.left;        //this creates the movement for this case.
+                            break;
 
         case 'right':
             if(this.x + this.movement >= 430){
@@ -135,11 +134,6 @@ document.addEventListener('keyup', function(e) {
     player.handleInput(allowedKeys[e.keyCode]);
 });
 
-Player.prototype.reset = function(){              //this resets the player to his original position once he dies.
-    'use strict';
-    player.x = 216;
-    player.y = 460;
-};
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
