@@ -30,7 +30,7 @@ var playerSpriteInfo = {
 // Draw the enemy and player on the screen, required method for game
 GameObject.prototype.render = function () {
    "use strict";
-   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+   ctx.drawImage(Resources.get(this.spriteInfo.sprite), this.x, this.y);
 };
 
 // Child class (derived class) of GameObject
