@@ -1,13 +1,32 @@
 // Enemies our player must avoid
 // Parent class for sprite objects in the game
-var GameObject = function(x, y, width, height, sprite) {
+var GameObject = function(x, y, spriteInfo) {
    'use strict';
    this.x = x;
    this.y = y;
-   this.width = width;
-   this.height = height;
-   this.sprite = sprite;
+   this.spriteInfo = spriteInfo;
 };
+
+enemySpriteInfo = {
+   sprite:'images/enemy-bug-small-99w-69h.png', //changed the sprite sizes to remove most of the whitespace.
+   width: 99,
+   height: 69
+};
+
+playerSpriteInfo = {
+  sprite:'images/char-cat-girl-small-73w-85h.png',
+  width: 73,
+  height: 85,
+  bound : { left: 5,                             //this creates the space in which the sprite can move on the screen/
+            right: 430,                          // the numbers are coordinates.
+            top: 50,
+            bottom: 460},
+  move :{ up: 83,                           // this creates the size of the player steps.
+           down: 83,
+           left: 101,
+           right: 101}
+};
+
 // Draw the enemy and player on the screen, required method for game
 GameObject.prototype.render = function () {
    "use strict";
@@ -15,20 +34,24 @@ GameObject.prototype.render = function () {
 };
 
 // Child class (derived class) of GameObject
-var Enemy = function(x, y, width, height, sprite) {
+var Enemy = function(this, x, y, spriteInfo) {
    'use strict';
-   GameObject.call(this, x, y, width, height, sprite); //This does not create this.x in the child. No, the this that you are passing in is substituting/
+   GameObject.call(this, x, y, spriteInfo)); //This does not create this.x in the child. No, the this that you are passing in is substituting/
                                                 // that as this in the GameObject constructor. Recall that/
                                                  // when you use the dot operator like GameObject.someFunction(),
                                                  // it implicitly passes in this. This is the thing to the left of the dot.
                                                  // So in this case, we don't want GameObject to become the this in the constructor.
                                                   // We want the derived class (its this) to override that hidden parameter
                                                   // and use the correct object in which to attach properties and functions to.
-   this.sprite = 'images/enemy-bug-small-99w-69h.png'; //changed the sprite sizes to remove most of the whitespace.
-   this.width = 99;
-   this.height = 69;
+   this.speed = function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 };
+// above
+// You may want to keep it in there, but you could certainly manually set them after object creation.
+// The thing about initializing through the constructor is that you're trying
+// to guarantee that you have each piece of data defined with something.
 Enemy.prototype = Object.create(GameObject.prototype); //builds the prototype for Enemy based on Object.prototype.
 
 Enemy.prototype.constructor = Enemy; //this lets the program kown to get its details for Enemy from here, but prototype from GameObject
@@ -50,20 +73,9 @@ Enemy.prototype.update = function (dt) {
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
-var Player = function(x, y, width, height, sprite) {
+var Player = function(this, x, y, spriteInfo) {
    'use strict';
-   GameObject.call(this, sprite);
-   this.sprite = 'images/char-cat-girl-small-73w-85h.png'; // sprite whitespace removed.
-   this.width = 73; //sprite width
-   this.height = 85; //sprite heigth
-   this.bound = { left: 5,                             //this creates the space in which the sprite can move on the screen/
-                   right: 430,                          // the numbers are coordinates.
-                   top: 50,
-                   bottom: 460};
-   this.movement = { up: 83,                           // this creates the size of the player steps.
-                      down: 83,
-                      left: 101,
-                      right: 101};
+   GameObject.call(this, x, y, spriteInfo);
 };
 
 Player.prototype = Object.create(GameObject.prototype);
@@ -152,7 +164,7 @@ allEnemies.push(enemy5);
 var enemy6 = new Enemy(0, 390, 100);
 allEnemies.push(enemy6);
 
-var player = new Player(216, 460);
+var player = new Player(216, 460, playerSpriteInfo);
 
 var Rectangle = function (x, y, width, height) {
     'use strict';
