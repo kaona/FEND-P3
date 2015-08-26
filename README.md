@@ -1,6 +1,12 @@
 frontend-nanodegree-arcade-game
 ===============================
 
-Students should use this rubric: https://www.udacity.com/course/viewer#!/c-ud015/l-3072058665/m-3072588797
+This Game is Called Cat v. Fish
 
-for self-checking their submission.
+To play the game you open up the html file and use the left, right, up, down keys, to navigate cat-girl across the rocks and into the water.
+If Cat Girl comes into contact with any of the bugs, she will die and the game will reset.
+
+The objective is to get to the water. Yes, Cat-Girl likes water.
+
+
+
