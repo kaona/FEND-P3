@@ -7,13 +7,13 @@ var GameObject = function(x, y, spriteInfo) {
    this.spriteInfo = spriteInfo;
 };
 
-enemySpriteInfo = {
+var enemySpriteInfo = {
    sprite:'images/enemy-bug-small-99w-69h.png', //changed the sprite sizes to remove most of the whitespace.
    width: 99,
    height: 69
 };
 
-playerSpriteInfo = {
+var playerSpriteInfo = {
   sprite:'images/char-cat-girl-small-73w-85h.png',
   width: 73,
   height: 85,
@@ -34,9 +34,9 @@ GameObject.prototype.render = function () {
 };
 
 // Child class (derived class) of GameObject
-var Enemy = function(this, x, y, spriteInfo) {
+var Enemy = function(x, y, spriteInfo) {
    'use strict';
-   GameObject.call(this, x, y, spriteInfo)); //This does not create this.x in the child. No, the this that you are passing in is substituting/
+   GameObject.call(this, x, y, spriteInfo); //This does not create this.x in the child. No, the this that you are passing in is substituting/
                                                 // that as this in the GameObject constructor. Recall that/
                                                  // when you use the dot operator like GameObject.someFunction(),
                                                  // it implicitly passes in this. This is the thing to the left of the dot.
@@ -73,7 +73,7 @@ Enemy.prototype.update = function (dt) {
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
-var Player = function(this, x, y, spriteInfo) {
+var Player = function(x, y, spriteInfo) {
    'use strict';
    GameObject.call(this, x, y, spriteInfo);
 };
@@ -150,19 +150,14 @@ document.addEventListener('keyup', function(e) {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 
-var allEnemies = [];
-var enemy1 = new Enemy(100, 150, 25);               //this creates new Enemy using the Enemy constructor.
-allEnemies.push(enemy1);
-var enemy2 = new Enemy(-2, 150, 35);
-allEnemies.push(enemy2);
-var enemy3 = new Enemy(150, 235, 45);
-allEnemies.push(enemy3);
-var enemy4 = new Enemy(-2, 235, 30);
-allEnemies.push(enemy4);
-var enemy5 = new Enemy(-2, 305, 45);
-allEnemies.push(enemy5);
-var enemy6 = new Enemy(0, 390, 100);
-allEnemies.push(enemy6);
+var allEnemies = [
+   new Enemy(100, 150, enemySpriteInfo),
+   new Enemy(-2, 150, enemySpriteInfo),
+   new Enemy(150, 235, enemySpriteInfo),
+   new Enemy(-2, 235, enemySpriteInfo),
+   new Enemy(-2, 305, enemySpriteInfo),
+   new Enemy(0, 390, enemySpriteInfo)
+];
 
 var player = new Player(216, 460, playerSpriteInfo);
 
