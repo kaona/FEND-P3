@@ -17,22 +17,22 @@ GameObject.prototype.render = function () {
 // Child class (derived class) of GameObject
 var Enemy = function(x, y, width, height, sprite) {
    'use strict';
-   GameObject.call(x, y, width, height, sprite); //This does not create this.x in the child. No, the this that you are passing in is substituting/
+   GameObject.call(this, x, y, width, height, sprite); //This does not create this.x in the child. No, the this that you are passing in is substituting/
                                                 // that as this in the GameObject constructor. Recall that/
                                                  // when you use the dot operator like GameObject.someFunction(),
                                                  // it implicitly passes in this. This is the thing to the left of the dot.
                                                  // So in this case, we don't want GameObject to become the this in the constructor.
                                                   // We want the derived class (its this) to override that hidden parameter
                                                   // and use the correct object in which to attach properties and functions to.
-   this.speed = speed * (Math.floor(Math.random() * 4) + 2);
    this.sprite = 'images/enemy-bug-small-99w-69h.png'; //changed the sprite sizes to remove most of the whitespace.
    this.width = 99;
    this.height = 69;
 
 };
-Enemy.prototype = Object.create(GameObject.prototype);
-Enemy.prototype.constructor = Enemy; //this lets the program no to get its details for Enemy from here, but prototype from GameObject
-// continue to add functions specific to Enemy
+Enemy.prototype = Object.create(GameObject.prototype); //builds the prototype for Enemy based on Object.prototype.
+
+Enemy.prototype.constructor = Enemy; //this lets the program kown to get its details for Enemy from here, but prototype from GameObject
+
 Enemy.prototype.update = function (dt) {
      'use strict';
     // You should multiply any movement by the dt parameter
@@ -67,7 +67,7 @@ var Player = function(x, y, width, height, sprite) {
 };
 
 Player.prototype = Object.create(GameObject.prototype);
-Player.prototype.constructor = Player;
+Player.prototype.constructor = Player; //this lets the program kown to get its details for Enemy from here, but prototype from GameObject
 // continue to add functions specific to Player
 // Player doesn't really need an update function because it
 // doesn't move based on time and velocity
