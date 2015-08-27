@@ -8,17 +8,17 @@ var GameObject = function(x, y, spriteInfo) {
 };
 
 var enemySpriteInfo = {
-   sprite:'images/enemy-bug-small-99w-69h.png', //changed the sprite sizes to remove most of the whitespace.
+   sprite:'images/enemy-bug.png', //changed the sprite sizes to remove most of the whitespace.
    width: 99,
    height: 69
 };
 
 var playerSpriteInfo = {
-  sprite:'images/char-cat-girl-small-73w-85h.png',
+  sprite:'images/char-cat-girl.png',
   width: 73,
   height: 85,
-  bound : { left: 5,                             //this creates the space in which the sprite can move on the screen/
-            right: 430,                          // the numbers are coordinates.
+  bound : { left: 0,                             //this creates the space in which the sprite can move on the screen/
+            right: 505,                          // the numbers are coordinates.
             top: 50,
             bottom: 460},
   move :{ upDown: 83,                           // this creates the size of the player steps.
