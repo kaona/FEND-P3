@@ -85,14 +85,6 @@ Player.prototype.constructor = Player; //this lets the program kown to get its d
 
 
 // I am trying to get this to Player.prototype.update to reset the game if the player wins...
-Player.prototype.update = function() {
-    // 'use strict';
-    // for (i = 0; i < allEnemies.length; i++){
-    //     if ((checkCollisions(playerRect, allEnemiesRect)) = true) {
-    //         player.reset();
-    //     }
-    // }
-};
 
 Player.prototype.reset = function(){              //this resets the player to his original position once he dies.
     'use strict';
