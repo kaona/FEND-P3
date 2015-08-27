@@ -8,7 +8,7 @@ var GameObject = function(x, y, spriteInfo) {
 };
 
 var enemySpriteInfo = {
-   sprite:'images/enemy-bug.png', //changed the sprite sizes to remove most of the whitespace.
+   sprite:'images/enemy-bug.png', 
    width: 101,
    height: 171
 };
@@ -89,7 +89,7 @@ Player.prototype.constructor = Player; //this lets the program kown to get its d
 Player.prototype.reset = function(){              //this resets the player to his original position once he dies.
     'use strict';
     player.x = 202;
-    player.y = 460;
+    player.y = 405;
 };
 
 Player.prototype.handleInput = function(allowedKeys){
@@ -157,28 +157,5 @@ var allEnemies = [
 
 var player = new Player(202, 405, playerSpriteInfo);
 
-var Rectangle = function (x, y, width, height) {
-    'use strict';
-    this.left = x;
-    this.top = y;
-    this.right = this.left + width;
-    this.bottom = this.top + height;
-    this.width = width;
-    this.height = height;
-};
-// var playerRect = new Rectangle(player.x, player.y, player.width, player.height);
-// var enemy1Rect = new Rectangle(enemy1.x, enemy1.y, enemy1.width, enemy1.height);
-// function checkCollision(playerRect, enemy1Rect) {
-//     return !(playerRect.left > enemy1R.right || playerRect.right < enemy1Rect.left || playerRect.top > enemy1Rect.bottom || playerRect.bottom < enemy1Rect.top);
-// };
-var playerRect = new Rectangle(player.x, player.y, player.width, player.height);
-
-for (var i = 0; i < allEnemies.length; i++) {
-    allEnemiesRect = new Rectangle(allEnemies[i].x, allEnemies[i].y, allEnemies[i].width, allEnemies[i].height);
-}
-var checkCollisions = function(playerRect, allEnemiesRect) {
-    'use strict';
-    return !(playerRect.left > allEnemiesRect[i].right || playerRect.right < allEnemiesRect[i].left || playerRect.top > allEnemiesRect[i].bottom || playerRect.bottom < allEnemiesRect[i].top);
-};
 
 

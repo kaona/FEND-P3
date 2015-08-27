@@ -8,5 +8,5 @@ If Cat Girl comes into contact with any of the bugs, she will die and the game w
 
 The objective is to get to the water. Yes, Cat-Girl likes water.
 
-
+Took out player.prototype.update as it was not being used for anything.
 
