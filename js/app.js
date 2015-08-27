@@ -147,8 +147,8 @@ document.addEventListener('keyup', function(e) {
 // Place the player object in a variable called player
 
 var allEnemies = [
-   new Enemy(100, 60, enemySpriteInfo),
-   new Enemy(-2, 140, enemySpriteInfo),
+   new Enemy(100, 63, enemySpriteInfo),
+   new Enemy(-2, 145, enemySpriteInfo),
    new Enemy(150, 230, enemySpriteInfo),
    new Enemy(-2, 230, enemySpriteInfo),
    new Enemy(-2, 310, enemySpriteInfo),

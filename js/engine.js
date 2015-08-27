@@ -117,30 +117,30 @@ var Engine = (function(global) {
     //will be for the size of the sprite image and not the tile. Determine size of sprite/
     //image by mapping the coordinates of the sprite images x and y. Formula will do the/
     //rest of the math with the hieght and width.
-    function renderCollisionRectangles() {
-       var playerRect = new Rectangle(
-           player.x + 15,
-           player.y + 60,
-           73,
-           80);
+    // function renderCollisionRectangles() {
+    //    var playerRect = new Rectangle(
+    //        player.x + 15,
+    //        player.y + 60,
+    //        73,
+    //        80);
 
-           ctx.save();
-           ctx.strokeStyle = "rgba(255,0,0,1)";
-           ctx.strokeRect(playerRect.left, playerRect.top, playerRect.width, playerRect.height);
-           ctx.strokeStyle = "rgba(0,0,255,1)";
+    //        ctx.save();
+    //        ctx.strokeStyle = "rgba(255,0,0,1)";
+    //        ctx.strokeRect(playerRect.left, playerRect.top, playerRect.width, playerRect.height);
+    //        ctx.strokeStyle = "rgba(0,0,255,1)";
 
-           allEnemies.forEach(function (enemy) {
-               var enemyRect = new Rectangle(
-                   enemy.x + 1,
-                   enemy.y + 77,
-                   99,
-                   65);
+    //        allEnemies.forEach(function (enemy) {
+    //            var enemyRect = new Rectangle(
+    //                enemy.x + 1,
+    //                enemy.y + 77,
+    //                99,
+    //                65);
 
-               ctx.strokeRect(enemyRect.left, enemyRect.top, enemyRect.width, enemyRect.height);
-           });
+    //            ctx.strokeRect(enemyRect.left, enemyRect.top, enemyRect.width, enemyRect.height);
+    //        });
 
-       ctx.restore();
-    }
+    //    ctx.restore();
+    // }
     
     // Check for all collisions
     function checkCollisions() {
@@ -161,7 +161,7 @@ var Engine = (function(global) {
            if (checkCollision(playerRect, enemyRect)) {
                player.reset();
            } else {
-               console.log("no collision");
+               // console.log("no collision");
            }
        });
     }
@@ -214,7 +214,7 @@ var Engine = (function(global) {
 
 
         renderEntities();
-        renderCollisionRectangles();
+        // renderCollisionRectangles();
     }
 
     /* This function is called by the render function and is called on each game
