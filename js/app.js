@@ -9,18 +9,18 @@ var GameObject = function(x, y, spriteInfo) {
 
 var enemySpriteInfo = {
    sprite:'images/enemy-bug.png', //changed the sprite sizes to remove most of the whitespace.
-   width: 99,
-   height: 69
+   width: 101,
+   height: 171
 };
 
 var playerSpriteInfo = {
   sprite:'images/char-cat-girl.png',
-  width: 73,
-  height: 85,
+  width: 101,
+  height: 171,
   bound : { left: 0,                             //this creates the space in which the sprite can move on the screen/
-            right: 505,                          // the numbers are coordinates.
-            top: 50,
-            bottom: 460},
+            right: 404,                          // the numbers are coordinates.
+            top: -10,
+            bottom: 405},
   move :{ upDown: 83,                           // this creates the size of the player steps.
           rightLeft: 101}
 };
@@ -88,7 +88,7 @@ Player.prototype.constructor = Player; //this lets the program kown to get its d
 
 Player.prototype.reset = function(){              //this resets the player to his original position once he dies.
     'use strict';
-    player.x = 216;
+    player.x = 202;
     player.y = 460;
 };
 
@@ -143,15 +143,15 @@ document.addEventListener('keyup', function(e) {
 // Place the player object in a variable called player
 
 var allEnemies = [
-   new Enemy(100, 150, enemySpriteInfo),
-   new Enemy(-2, 150, enemySpriteInfo),
-   new Enemy(150, 235, enemySpriteInfo),
-   new Enemy(-2, 235, enemySpriteInfo),
-   new Enemy(-2, 305, enemySpriteInfo),
-   new Enemy(0, 390, enemySpriteInfo)
+   new Enemy(100, 60, enemySpriteInfo),
+   new Enemy(-2, 140, enemySpriteInfo),
+   new Enemy(150, 230, enemySpriteInfo),
+   new Enemy(-2, 230, enemySpriteInfo),
+   new Enemy(-2, 310, enemySpriteInfo),
+   new Enemy(0, 310, enemySpriteInfo)
 ];
 
-var player = new Player(216, 460, playerSpriteInfo);
+var player = new Player(202, 405, playerSpriteInfo);
 
 var Rectangle = function (x, y, width, height) {
     'use strict';
