@@ -21,16 +21,18 @@ var playerSpriteInfo = {
             right: 430,                          // the numbers are coordinates.
             top: 50,
             bottom: 460},
-  move :{ up: 83,                           // this creates the size of the player steps.
-           down: 83,
-           left: 101,
-           right: 101}
+  move :{ upDown: 83,                           // this creates the size of the player steps.
+          rightLeft: 101}
 };
 
 // Draw the enemy and player on the screen, required method for game
 GameObject.prototype.render = function () {
-   "use strict";
+   'use strict';
    ctx.drawImage(Resources.get(this.spriteInfo.sprite), this.x, this.y);
+};
+function getRandomInt(min, max) {
+  'use strict';
+   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
 // Child class (derived class) of GameObject
@@ -43,10 +45,6 @@ var Enemy = function(x, y, spriteInfo) {
                                                  // So in this case, we don't want GameObject to become the this in the constructor.
                                                   // We want the derived class (its this) to override that hidden parameter
                                                   // and use the correct object in which to attach properties and functions to.
-   this.speed = function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
 };
 // above
 // You may want to keep it in there, but you could certainly manually set them after object creation.
@@ -106,28 +104,29 @@ Player.prototype.handleInput = function(allowedKeys){
                                                       // by passing handleInput actions to player.
     switch(allowedKeys){
 
-        case 'left' : if(this.x - this.movement <= this.bound.left){  //this line applies the player bound to its movement.
-                            this.x = this.bound.left;
-                            } else this.x = this.x - this.movement.left;        //this creates the movement for this case.
-                            break;
+        case 'left' : 
+            if(this.x - this.spriteInfo.move.rightLeft <= this.spriteInfo.bound.left){  //this line applies the player bound to its movement.
+               this.x = this.spriteInfo.bound.left;
+              } else this.x = this.x - his.spriteInfo.move.rightLeft;        //this creates the movement for this case.
+              break;
 
         case 'right':
-            if(this.x + this.movement >= 430){
-                this.x = this.bound.right;
-        } else this.x = this.x + this.movement.right;
-        break;
+            if(this.x + his.spriteInfo.move.rightLeft >= 430){
+               this.x = this.spriteInfo.bound.right;
+              } else this.x = this.x + his.spriteInfo.move.rightLeft;
+              break;
 
         case 'up':
-            if(this.y - this.movement.up <= this.bound.top) {
-            this.y = this.bound.top;
-        } else this.y = this.y - this.movement.up;
-        break;
+            if(this.y - this.spriteInfo.move.upDown <= this.spriteInfo.bound.top) {
+               this.y = this.spriteInfo.bound.top;
+              } else this.y = this.y - this.spriteInfo.move.upDown;
+              break;
 
         case 'down':
-            if(this.y + this.movement.down >= this.bound.bottom) {
-            this.y = this.bound.bottom;
-        } else this.y = this.y + this.movement.down;
-        break;
+            if(this.y + this.spriteInfo.move.upDown >= this.spriteInfo.bound.bottom) {
+               this.y = this.spriteInfo.bound.bottom;
+              } else this.y = this.y + this.spriteInfo.move.upDown;
+              break;
     }
 };
 
