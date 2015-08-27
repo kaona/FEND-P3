@@ -45,6 +45,7 @@ var Enemy = function(x, y, spriteInfo) {
                                                  // So in this case, we don't want GameObject to become the this in the constructor.
                                                   // We want the derived class (its this) to override that hidden parameter
                                                   // and use the correct object in which to attach properties and functions to.
+   this.speed = getRandomInt(25, 150); 
 };
 // above
 // You may want to keep it in there, but you could certainly manually set them after object creation.
@@ -107,13 +108,13 @@ Player.prototype.handleInput = function(allowedKeys){
         case 'left' : 
             if(this.x - this.spriteInfo.move.rightLeft <= this.spriteInfo.bound.left){  //this line applies the player bound to its movement.
                this.x = this.spriteInfo.bound.left;
-              } else this.x = this.x - his.spriteInfo.move.rightLeft;        //this creates the movement for this case.
+              } else this.x = this.x - this.spriteInfo.move.rightLeft;        //this creates the movement for this case.
               break;
 
         case 'right':
-            if(this.x + his.spriteInfo.move.rightLeft >= 430){
+            if(this.x + this.spriteInfo.move.rightLeft >= 430){
                this.x = this.spriteInfo.bound.right;
-              } else this.x = this.x + his.spriteInfo.move.rightLeft;
+              } else this.x = this.x + this.spriteInfo.move.rightLeft;
               break;
 
         case 'up':
