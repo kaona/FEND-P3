@@ -97,28 +97,32 @@ Player.prototype.handleInput = function(allowedKeys){
                                                       // by passing handleInput actions to player.
     switch(allowedKeys){
 
-        case 'left' : 
-            if(this.x - this.spriteInfo.move.rightLeft <= this.spriteInfo.bound.left){  //this line applies the player bound to its movement.
-               this.x = this.spriteInfo.bound.left;
-              } else this.x = this.x - this.spriteInfo.move.rightLeft;        //this creates the movement for this case.
-              break;
+        case 'left' :
+           this.x -= this.spriteInfo.move.rightLeft;
+           if (this.x < this.spriteInfo.bound.left) {
+               this.x += this.spriteInfo.move.rightLeft;
+           }
+            break;
 
         case 'right':
-            if(this.x + this.spriteInfo.move.rightLeft >= 430){
-               this.x = this.spriteInfo.bound.right;
-              } else this.x = this.x + this.spriteInfo.move.rightLeft;
-              break;
+           this.x += this.spriteInfo.move.rightLeft;
+           if (this.x > this.spriteInfo.bound.right) {
+               this.x -= this.spriteInfo.move.rightLeft;
+           }
+           break;
 
         case 'up':
-            if(this.y - this.spriteInfo.move.upDown <= this.spriteInfo.bound.top) {
-               this.y = this.spriteInfo.bound.top;
-              } else this.y = this.y - this.spriteInfo.move.upDown;
+            this.y -= this.spriteInfo.move.upDown;
+            if (this.y < this.spriteInfo.bound.top) {
+                this.y += this.spriteInfo.move.upDown;
+              }
               break;
 
         case 'down':
-            if(this.y + this.spriteInfo.move.upDown >= this.spriteInfo.bound.bottom) {
-               this.y = this.spriteInfo.bound.bottom;
-              } else this.y = this.y + this.spriteInfo.move.upDown;
+            this.y += this.spriteInfo.move.upDown; 
+            if (this.y > this.spriteInfo.bound.bottom) {
+                this.y -= this.spriteInfo.move.upDown;
+              }
               break;
     }
 };
