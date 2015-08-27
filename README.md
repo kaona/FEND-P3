@@ -10,3 +10,4 @@ The objective is to get to the water. Yes, Cat-Girl likes water.
 
 Took out player.prototype.update as it was not being used for anything.
 
+Credit to the discussion boards participants and to https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
