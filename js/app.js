@@ -1,7 +1,7 @@
+'use strict';
 // Enemies our player must avoid
 // Parent class for sprite objects in the game
 var GameObject = function(x, y, spriteInfo) {
-   'use strict';
    this.x = x;
    this.y = y;
    this.spriteInfo = spriteInfo;
@@ -27,7 +27,6 @@ var playerSpriteInfo = {
 
 // Draw the enemy and player on the screen, required method for game
 GameObject.prototype.render = function () {
-   'use strict';
    ctx.drawImage(Resources.get(this.spriteInfo.sprite), this.x, this.y);
 };
 function getRandomInt(min, max) {
@@ -82,9 +81,6 @@ Player.prototype.constructor = Player; //this lets the program kown to get its d
 // continue to add functions specific to Player
 // Player doesn't really need an update function because it
 // doesn't move based on time and velocity
-
-
-// I am trying to get this to Player.prototype.update to reset the game if the player wins...
 
 Player.prototype.reset = function(){              //this resets the player to his original position once he dies.
     'use strict';
