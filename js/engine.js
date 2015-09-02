@@ -95,14 +95,13 @@ var Engine = (function(global) {
      // Rectangle constructor function
      // this defines function that creates the player and enemy object collision boxes.
     var Rectangle = function (left, top, width, height) { 
-        'use strict'
        this.left = left;
        this.top = top;
        this.right = left + width;
        this.bottom = top + height;
        this.width = width;
        this.height = height;
-    }
+    };
 
     // Check to see if the rectangles overlap by checking 
     function checkCollision(r1, r2) {
@@ -113,59 +112,39 @@ var Engine = (function(global) {
            r1.bottom < r2.top
        );
     }
-    //enter the parameters for the size of your hit box here. These paramenters/
-    //will be for the size of the sprite image and not the tile. Determine size of sprite/
-    //image by mapping the coordinates of the sprite images x and y. Formula will do the/
-    //rest of the math with the hieght and width.
-    // function renderCollisionRectangles() {
-    //    var playerRect = new Rectangle(
-    //        player.x + 15,
-    //        player.y + 60,
-    //        73,
-    //        80);
-
-    //        ctx.save();
-    //        ctx.strokeStyle = "rgba(255,0,0,1)";
-    //        ctx.strokeRect(playerRect.left, playerRect.top, playerRect.width, playerRect.height);
-    //        ctx.strokeStyle = "rgba(0,0,255,1)";
-
-    //        allEnemies.forEach(function (enemy) {
-    //            var enemyRect = new Rectangle(
-    //                enemy.x + 1,
-    //                enemy.y + 77,
-    //                99,
-    //                65);
-
-    //            ctx.strokeRect(enemyRect.left, enemyRect.top, enemyRect.width, enemyRect.height);
-    //        });
-
-    //    ctx.restore();
+    var timeoutID = window.setTimeout(player.reset(), [5000]);
+    // function playerWin() {
+    // if (player.y <= 101) {
+            
+    //         timeoutID;
+    //     }   
     // }
+
     
     // Check for all collisions
     function checkCollisions() {
        var playerRect = new Rectangle(
-           player.x + 15,
-           player.y + 60,
-           73,
-           80);
-
+        player.x + 23,
+        player.y + 68,
+        56,
+        64);
 
        allEnemies.forEach(function (enemy) {
            var enemyRect = new Rectangle(
-               enemy.x + 1,
-               enemy.y + 77,
-               99,
-               65);
+                enemy.x + 11,
+                enemy.y + 87,
+                79,
+                45);
 
            if (checkCollision(playerRect, enemyRect)) {
                player.reset();
            } else {
-               // console.log("no collision");
+                if (player.y <= 101) {
+                    timeoutID();
+                }    
            }
        });
     }
-
 
     function updateEntities(dt) {
         allEnemies.forEach(function(enemy) {
@@ -214,7 +193,7 @@ var Engine = (function(global) {
 
 
         renderEntities();
-        // renderCollisionRectangles();
+
     }
 
     /* This function is called by the render function and is called on each game

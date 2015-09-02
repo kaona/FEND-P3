@@ -1,0 +1,32 @@
+    //Insert this code in engine.js below function checkCollision at line 115 if you are going to retest collisions.
+
+    //enter the parameters for the size of your hit box here. These paramenters/
+    //will be for the size of the sprite image and not the tile. Determine size of sprite/
+    //image by mapping the coordinates of the sprite images x and y. Formula will do the/
+    //rest of the math with the hieght and width.
+    function renderCollisionRectangles() {
+    var playerRect = new Rectangle(
+        player.x + 23,
+        player.y + 68,
+        56,
+        64);
+
+        ctx.save();
+        ctx.strokeStyle = "rgba(255,0,0,1)";
+        ctx.strokeRect(playerRect.left, playerRect.top, playerRect.width, playerRect.height);
+        ctx.strokeStyle = "rgba(0,0,255,1)";
+
+        allEnemies.forEach(function (enemy) {
+            var enemyRect = new Rectangle(
+                enemy.x + 11,
+                enemy.y + 87,
+                79,
+                45);
+
+               ctx.strokeRect(enemyRect.left, enemyRect.top, enemyRect.width, enemyRect.height);
+           });
+        ctx.restore();
+    }
+
+    //Add this code below renderEntities(); in Engine function at Line 191
+    renderCollisionRectangles();
