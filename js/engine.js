@@ -47,6 +47,9 @@ var Engine = (function(global) {
          * our update function since it may be used for smooth animation.
          */
         update(dt);
+        if (tickCounter.active) {
+        tickCounter.update(dt);
+        }
         render();
 
         /* Set our lastTime variable which is used to determine the time delta
@@ -112,14 +115,6 @@ var Engine = (function(global) {
            r1.bottom < r2.top
        );
     }
-    var timeoutID = window.setTimeout(player.reset(), [5000]);
-    // function playerWin() {
-    // if (player.y <= 101) {
-            
-    //         timeoutID;
-    //     }   
-    // }
-
     
     // Check for all collisions
     function checkCollisions() {
@@ -139,8 +134,8 @@ var Engine = (function(global) {
            if (checkCollision(playerRect, enemyRect)) {
                player.reset();
            } else {
-                if (player.y <= 101) {
-                    timeoutID();
+                if (player.y < 0) {
+                    tickCounter.active = true;
                 }    
            }
        });
