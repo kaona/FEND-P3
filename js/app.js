@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 // Enemies our player must avoid
 // Parent class for sprite objects in the game
 var GameObject = function(x, y, spriteInfo) {
@@ -25,32 +25,18 @@ var playerSpriteInfo = {
           rightLeft: 101}
 };
 
-var tickCounter = function() {
-   this.MAX_TICK_COUNTER_TIME = 0.25; // time in seconds
-   this.counter = this.MAX_TICK_COUNTER_TIME;
-   this.active = false;
-
-   this.update = function(dt) {
-       this.counter -= dt;
-       if (this.counter <= 0) {
-           this.active = false;
-           this.counter = this.MAX_TICK_COUNTER_TIME;
-           player.reset();
-       }
-   };
-};
-
-
 // Draw the enemy and player on the screen, required method for game
 GameObject.prototype.render = function () {
    ctx.drawImage(Resources.get(this.spriteInfo.sprite), this.x, this.y);
 };
 function getRandomInt(min, max) {
+  'use strict';
    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+};
 
 // Child class (derived class) of GameObject
 var Enemy = function(x, y, spriteInfo) {
+   'use strict';
    GameObject.call(this, x, y, spriteInfo); //This does not create this.x in the child. No, the this that you are passing in is substituting/
                                                 // that as this in the GameObject constructor. Recall that/
                                                  // when you use the dot operator like GameObject.someFunction(),
@@ -69,6 +55,7 @@ Enemy.prototype = Object.create(GameObject.prototype); //builds the prototype fo
 Enemy.prototype.constructor = Enemy; //this lets the program kown to get its details for Enemy from here, but prototype from GameObject
 
 Enemy.prototype.update = function (dt) {
+     'use strict';
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
@@ -85,26 +72,25 @@ Enemy.prototype.update = function (dt) {
 // This class requires an update(), render() and
 // a handleInput() method.
 var Player = function(x, y, spriteInfo) {
+   'use strict';
    GameObject.call(this, x, y, spriteInfo);
 };
 
 Player.prototype = Object.create(GameObject.prototype);
-
 Player.prototype.constructor = Player; //this lets the program kown to get its details for Enemy from here, but prototype from GameObject
 // continue to add functions specific to Player
 // Player doesn't really need an update function because it
 // doesn't move based on time and velocity
 
 Player.prototype.reset = function(){              //this resets the player to his original position once he dies.
-    this.x = 202;
-    this.y = 405;
+    'use strict';
+    player.x = 202;
+    player.y = 405;
 };
-//this creates control of player movements via keyboard arrows.
-// by passing handleInput actions to player.
+
 Player.prototype.handleInput = function(allowedKeys){
-    if (tickCounter.active) {
-        return;
-      }
+    'use strict';                                                 //this creates control of player movements via keyboard arrows.
+                                                      // by passing handleInput actions to player.
     switch(allowedKeys){
 
         case 'left' :
@@ -141,6 +127,7 @@ Player.prototype.handleInput = function(allowedKeys){
 // Player.handleInput() method. You don't need to modify this.
 
 document.addEventListener('keyup', function(e) {
+    'use strict';
     var allowedKeys = {
         37: 'left',
         38: 'up',
@@ -165,3 +152,6 @@ var allEnemies = [
 ];
 
 var player = new Player(202, 405, playerSpriteInfo);
+
+
+
