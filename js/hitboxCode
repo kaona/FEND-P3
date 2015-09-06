@@ -30,3 +30,5 @@
 
     //Add this code below renderEntities(); in Engine function at Line 191
     renderCollisionRectangles();
+
+var timeoutID = window.setTimeout(player.reset(), [5000]);
