@@ -1,4 +1,6 @@
-/* Enemies our player must avoid
+/* This code is for UDACITY Frontend Nanodegree. It is the for Project 3 of the Nanodegree.
+ * My name is Alain Armand. Date of submission 9/6/2015.
+ * Enemies our player must avoid
  * Parent class for sprite objects in the game
  */
 var GameObject = function(x, y, spriteInfo) {
@@ -33,14 +35,18 @@ var playerSpriteInfo = {
     }
 };
 
-/* Draw the enemy and player on the screen, required method for game
+/* Draws the enemy and player on the screen, required method for game
  */
 GameObject.prototype.render = function() {
     'use strict';
     ctx.drawImage(Resources.get(this.spriteInfo.sprite), this.x, this.y);
 };
 
-function getRandomInt(min, max) {
+/* This function creates a randomness to the how the bugs move by setting all 
+ * enemy speeds as a multiplier of the result of this function
+*/
+  function getRandomInt(min, max) {
+  
     'use strict';
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -109,8 +115,8 @@ Player.prototype.constructor = Player;
  */
 Player.prototype.reset = function() {
     'use strict';
-    player.x = 202;
-    player.y = 405;
+    this.x = 202;
+    this.y = 405;
 };
 
 /* Player.prototype.handleInput creates control of player movements via keyboard arrows.
